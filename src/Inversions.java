@@ -38,7 +38,7 @@ public class Inversions {
         return new InversionResult(inversionCount, result);
     }
 
-    public static class InversionResult {
+    static class InversionResult {
         int inversionCount;
         int[] sortedArray;
 
