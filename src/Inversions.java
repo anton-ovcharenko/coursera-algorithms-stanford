@@ -1,25 +1,12 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Inversions {
 
     public static void main(String[] args) {
         //System.out.println(inversions(new int[]{1,3,5,2,4,6}).inversionCount);
         //System.out.println(inversions(new int[]{6,5,4,3,2,1}).inversionCount);
-
-        try (Scanner scanner = new Scanner(new File("./res/IntegerArray.txt"))) {
-            int[] array = new int[100000];
-            int i = 0;
-            while (scanner.hasNextInt()) {
-                array[i++] = scanner.nextInt();
-            }
-
-            System.out.println(inversions(array).inversionCount);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        int[] array = Utils.arrayFromFile("inversions.txt", 10_000);
+        System.out.println(inversions(array).inversionCount);
     }
 
     private static InversionResult inversions(int[] array) {
