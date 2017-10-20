@@ -1,3 +1,7 @@
+package oaa.stanfordAlgorithms.course_1;
+
+import oaa.stanfordAlgorithms.Utils;
+
 import java.util.Arrays;
 
 public class Inversions {

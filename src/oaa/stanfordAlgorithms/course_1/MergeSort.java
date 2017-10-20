@@ -1,3 +1,5 @@
+package oaa.stanfordAlgorithms.course_1;
+
 import java.util.Arrays;
 
 public class MergeSort {

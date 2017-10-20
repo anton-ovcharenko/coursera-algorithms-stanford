@@ -1,3 +1,5 @@
+package oaa.stanfordAlgorithms.course_1;
+
 public class StrassenMatrixMultiplication {
     public static void main(String[] args) {
         int[][] A = new int[][]{
