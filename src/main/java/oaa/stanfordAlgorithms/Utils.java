@@ -8,7 +8,7 @@ public class Utils {
     public static int[] arrayFromFile(String fileName, int size) {
         int[] array = new int[size];
 
-        try (Scanner scanner = new Scanner(new File("./res/" + fileName))) {
+        try (Scanner scanner = new Scanner(new File("./src/main/resources/" + fileName))) {
             int i = 0;
             while (scanner.hasNextInt()) {
                 array[i++] = scanner.nextInt();

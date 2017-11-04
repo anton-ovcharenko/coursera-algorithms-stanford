@@ -49,7 +49,7 @@ public class KargerMinCut {
         return edges.size();
     }
 
-    public static class Graph {
+    static class Graph {
         Set<Integer> vertices = new HashSet<>();
         List<Edge> edges = new ArrayList<>();
 
@@ -91,7 +91,7 @@ public class KargerMinCut {
             return edges;
         }
 
-        public static class Edge implements Cloneable {
+        static class Edge implements Cloneable {
             int from;
             int to;
 
@@ -127,7 +127,6 @@ public class KargerMinCut {
         }
     }
 
-
     static KargerMinCut.Graph graphFromFile(String fileName, int vertexAmount) {
         KargerMinCut.Graph graph = new KargerMinCut.Graph();
 
@@ -135,7 +134,7 @@ public class KargerMinCut {
             graph.addVertex(i);
         }
 
-        try (Scanner rowReader = new Scanner(new File("./res/" + fileName))) {
+        try (Scanner rowReader = new Scanner(new File("./src/main/resources/" + fileName))) {
             while (rowReader.hasNextLine()) {
                 Scanner colReader = new Scanner(rowReader.nextLine());
                 int colIndex = 0;
