@@ -2,14 +2,14 @@ package oaa.stanfordAlgorithms.course_1;
 
 public class StrassenMatrixMultiplication {
     public static void main(String[] args) {
-        int[][] A = new int[][]{
-                {1, 3},
-                {13, 56},
-                {4, 5}};
+        int[][] A = new int[][] {
+            {1, 3},
+            {13, 56},
+            {4, 5}};
 
-        int[][] B = new int[][]{
-                {3, 1, 66, 5},
-                {5, 6, 34, -7}};
+        int[][] B = new int[][] {
+            {3, 1, 66, 5},
+            {5, 6, 34, -7}};
 
         multiplyMatrices(A, B);
     }
@@ -17,7 +17,7 @@ public class StrassenMatrixMultiplication {
     private static void multiplyMatrices(int[][] a, int[][] b) {
         if (a[0].length != b.length) {
             throw new IllegalArgumentException(
-                    "Can not multiply matrices. Column amount of matrix a should be equal to string amount of matrix b.");
+                "Can not multiply matrices. Column amount of matrix a should be equal to string amount of matrix b.");
         }
 
         int maxDimention = Math.max(a.length, Math.max(b.length, b[0].length));
@@ -37,7 +37,7 @@ public class StrassenMatrixMultiplication {
     private static int[][] multiplyStrassen(int[][] left, int[][] right) {
         //left and right are square matrices with equals dimensions
         if (left.length < 2) {
-            return new int[][]{{left[0][0] * right[0][0]}};
+            return new int[][] {{left[0][0] * right[0][0]}};
         }
 
         SplittedMatrices sl = splitMatrix(left);
@@ -51,10 +51,10 @@ public class StrassenMatrixMultiplication {
         int[][] p7 = multiplyStrassen(subMatrices(sl.a, sl.c), addMatrices(sr.a, sr.b));
 
         return joinMatrices(new SplittedMatrices(
-                addMatrices(addMatrices(p5, p6), subMatrices(p4, p2)),
-                addMatrices(p1, p2),
-                addMatrices(p3, p4),
-                subMatrices(addMatrices(p1, p5), addMatrices(p3, p7))
+            addMatrices(addMatrices(p5, p6), subMatrices(p4, p2)),
+            addMatrices(p1, p2),
+            addMatrices(p3, p4),
+            subMatrices(addMatrices(p1, p5), addMatrices(p3, p7))
         ));
     }
 

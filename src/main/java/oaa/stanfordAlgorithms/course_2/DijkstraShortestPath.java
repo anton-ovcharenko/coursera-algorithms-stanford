@@ -1,7 +1,11 @@
 package oaa.stanfordAlgorithms.course_2;
 
 import java.io.File;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Scanner;
+import java.util.Set;
 
 public class DijkstraShortestPath {
 
@@ -20,8 +24,8 @@ public class DijkstraShortestPath {
         while (X.size() < verticesAmount) {
             int minValue = Integer.MAX_VALUE;
             int minW = -1;
-            for(int v : X) {
-                for(Graph.Edge w : graph.edgeArray[v]) {
+            for (int v : X) {
+                for (Graph.Edge w : graph.edgeArray[v]) {
                     if (!X.contains(w.to) && distances[v] + w.length < minValue) {
                         minValue = distances[v] + w.length;
                         minW = w.to;
@@ -32,9 +36,9 @@ public class DijkstraShortestPath {
             distances[minW] = minValue;
         }
 
-        Arrays.stream(new int[]{7,37,59,82,99,115,133,165,188,197})
-                .map(i -> distances[i])
-                .forEach(i -> System.out.print(i+","));
+        Arrays.stream(new int[] {7, 37, 59, 82, 99, 115, 133, 165, 188, 197})
+              .map(i -> distances[i])
+              .forEach(i -> System.out.print(i + ","));
     }
 
     static Graph graphFromFile(String fileName, int size) {

@@ -2,7 +2,12 @@ package oaa.stanfordAlgorithms.course_1;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.Set;
 
 public class KargerMinCut {
     public static void main(String[] args) {
@@ -71,7 +76,7 @@ public class KargerMinCut {
             boolean isExist = false;
             for (Edge edge : edges) {
                 if (edge.from == from && edge.to == to
-                        || edge.from == to && edge.to == from) {
+                    || edge.from == to && edge.to == from) {
                     isExist = true;
                     break;
                 }

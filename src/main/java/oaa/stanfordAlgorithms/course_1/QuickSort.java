@@ -1,8 +1,8 @@
 package oaa.stanfordAlgorithms.course_1;
 
-import oaa.stanfordAlgorithms.Utils;
-
 import java.util.Arrays;
+
+import oaa.stanfordAlgorithms.Utils;
 
 public class QuickSort {
 
@@ -60,8 +60,8 @@ public class QuickSort {
             case MEDIAN_OF_THREE:
                 int m = l + (int) Math.ceil((r - l + 1) / 2.0) - 1;
                 return (array[l] > array[r])
-                        ? ((array[r] > array[m]) ? r : ((array[l] > array[m]) ? m : l))
-                        : ((array[l] > array[m]) ? l : ((array[r] > array[m]) ? m : r));
+                    ? ((array[r] > array[m]) ? r : ((array[l] > array[m]) ? m : l))
+                    : ((array[l] > array[m]) ? l : ((array[r] > array[m]) ? m : r));
             default:
                 throw new RuntimeException("Unknown pivot strategy");
         }

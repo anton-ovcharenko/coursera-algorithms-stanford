@@ -1,8 +1,8 @@
 package oaa.stanfordAlgorithms.course_1;
 
-import oaa.stanfordAlgorithms.Utils;
-
 import java.util.Arrays;
+
+import oaa.stanfordAlgorithms.Utils;
 
 public class Inversions {
 
@@ -24,7 +24,7 @@ public class Inversions {
         InversionResult d = merge(a.sortedArray, b.sortedArray);
 
         return new InversionResult(a.inversionCount + b.inversionCount + d.inversionCount,
-                d.sortedArray);
+                                   d.sortedArray);
     }
 
     private static InversionResult merge(int[] left, int[] right) {
@@ -34,7 +34,7 @@ public class Inversions {
 
         for (int k = 0; k < result.length; k++) {
             if (rightIndex >= right.length ||
-                    (leftIndex < left.length && left[leftIndex] < right[rightIndex])) {
+                (leftIndex < left.length && left[leftIndex] < right[rightIndex])) {
                 result[k] = left[leftIndex++];
             } else {
                 result[k] = right[rightIndex++];
