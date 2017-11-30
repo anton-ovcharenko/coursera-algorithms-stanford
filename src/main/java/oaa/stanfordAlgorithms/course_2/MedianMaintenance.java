@@ -6,7 +6,7 @@ public class MedianMaintenance {
 
     public static void main(String[] args) {
         final int size = 10_000;
-        int[] array = Utils.arrayFromFile("Median.txt", size);
+        int[] array = Utils.intArrayFromFile("Median.txt", size);
         Heap heapLow = new Heap(size, true);
         Heap heapHigh = new Heap(size, false);
 

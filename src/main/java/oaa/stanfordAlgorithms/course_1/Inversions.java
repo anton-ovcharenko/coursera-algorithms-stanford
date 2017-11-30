@@ -9,7 +9,7 @@ public class Inversions {
     public static void main(String[] args) {
         //System.out.println(inversions(new int[]{1,3,5,2,4,6}).inversionCount);
         //System.out.println(inversions(new int[]{6,5,4,3,2,1}).inversionCount);
-        int[] array = Utils.arrayFromFile("inversions.txt", 10_000);
+        int[] array = Utils.intArrayFromFile("inversions.txt", 10_000);
         System.out.println(inversions(array).inversionCount);
     }
 

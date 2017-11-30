@@ -13,11 +13,11 @@ public class QuickSort {
 
         String fileName = "QuickSort.txt";
         int size = 10_000;
-        int[] array = Utils.arrayFromFile(fileName, size);
+        int[] array = Utils.intArrayFromFile(fileName, size);
         System.out.println(sort(array, 0, array.length - 1, PivotStrategy.FIRST));
-        array = Utils.arrayFromFile(fileName, size);
+        array = Utils.intArrayFromFile(fileName, size);
         System.out.println(sort(array, 0, array.length - 1, PivotStrategy.FINAL));
-        array = Utils.arrayFromFile(fileName, size);
+        array = Utils.intArrayFromFile(fileName, size);
         System.out.println(sort(array, 0, array.length - 1, PivotStrategy.MEDIAN_OF_THREE));
         System.out.println(Arrays.toString(array));
     }
