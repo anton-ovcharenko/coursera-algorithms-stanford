@@ -1,6 +1,7 @@
 package oaa.stanfordAlgorithms.course_3;
 
 import javafx.util.Pair;
+import oaa.stanfordAlgorithms.Edge;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,7 +36,7 @@ public class PrimMinimumSpanningTree_MxN {
         System.out.println(T);
     }
 
-    static Pair<Integer, Edge[]> edgesFromFile(String fileName) {
+    public static Pair<Integer, Edge[]> edgesFromFile(String fileName) {
         try (Scanner scanner = new Scanner(new File("./src/main/resources/" + fileName))) {
             String[] firstRow = scanner.nextLine().split(" ");
             int nodeNumber = parseInt(firstRow[0]);
@@ -54,17 +55,5 @@ public class PrimMinimumSpanningTree_MxN {
             e.printStackTrace();
         }
         return null;
-    }
-
-    static class Edge {
-        int v1;
-        int v2;
-        int cost;
-
-        Edge(int v1, int v2, int cost) {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.cost = cost;
-        }
     }
 }

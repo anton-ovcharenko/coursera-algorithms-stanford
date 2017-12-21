@@ -1,13 +1,12 @@
 package oaa.stanfordAlgorithms.course_3;
 
 import javafx.util.Pair;
+import oaa.stanfordAlgorithms.Edge;
 import oaa.stanfordAlgorithms.Heap;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
-import static java.lang.Integer.parseInt;
+import static oaa.stanfordAlgorithms.course_3.PrimMinimumSpanningTree_MxN.edgesFromFile;
 
 public class PrimMinimumSpanningTree_Heap {
 
@@ -54,38 +53,5 @@ public class PrimMinimumSpanningTree_Heap {
         List<Edge> list = adjacencyMap.getOrDefault(vertex, new ArrayList<>());
         adjacencyMap.put(vertex, list);
         return list;
-    }
-
-    static Pair<Integer, Edge[]> edgesFromFile(String fileName) {
-        try (Scanner scanner = new Scanner(new File("./src/main/resources/" + fileName))) {
-            String[] firstRow = scanner.nextLine().split(" ");
-            int nodeNumber = parseInt(firstRow[0]);
-            int edgeNumber = parseInt(firstRow[1]);
-            Edge[] array = new Edge[edgeNumber];
-            int i = 0;
-            while (scanner.hasNextLine()) {
-                String row = scanner.nextLine();
-                if (!row.isEmpty()) {
-                    String[] num = row.split(" ");
-                    array[i++] = new Edge(parseInt(num[0]), parseInt(num[1]), parseInt(num[2]));
-                }
-            }
-            return new Pair<>(nodeNumber, array);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    static class Edge {
-        int v1;
-        int v2;
-        int cost;
-
-        Edge(int v1, int v2, int cost) {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.cost = cost;
-        }
     }
 }
