@@ -8,69 +8,54 @@ import java.util.Scanner;
 import static java.lang.Integer.MAX_VALUE;
 
 public class BellmanFord {
-    static long startTs = System.currentTimeMillis();
 
     public static void main(String[] args) {
-        System.out.println("Starting...");
         processGraph("bf_g1.txt");
         processGraph("bf_g2.txt");
         processGraph("bf_g3.txt");
+        //processGraph("bf_large.txt");
     }
 
     private static void processGraph(String fileName) {
-        System.out.println(String.format("Start processing %s at %s", fileName, tsFromStarting()));
+        long startTs = System.currentTimeMillis();
         InputData inputData = inputDataFromFile(fileName);
 
-        int min = MAX_VALUE;
+        Integer min = MAX_VALUE;
         for (int i = 1; i <= inputData.vertexAmount; i++) {
             Integer mp = getMinPathBySourceOrNull(inputData, i);
-            System.out.println(String.format("%s done at %s ...", i, (tsFromStarting())));
+            System.out.println(String.format("%s done at %s ...", i, (System.currentTimeMillis() - startTs)));
             if (mp == null) {
-                System.out.println("NO");
+                min = null;
                 break;
             }
             if (min > mp) {
                 min = mp;
             }
         }
-        System.out.println(min);
-    }
-
-    private static long tsFromStarting() {
-        return System.currentTimeMillis() - startTs;
+        System.out.println(fileName + " min: " + min + " duration: " + (System.currentTimeMillis() - startTs));
     }
 
     private static Integer getMinPathBySourceOrNull(InputData inputData, int startVertex) {
-        int[] aCurr = new int[inputData.vertexAmount + 1];
-        int[] aPrev = new int[inputData.vertexAmount + 1];
-        Arrays.fill(aCurr, MAX_VALUE);
-        aCurr[startVertex] = 0;
+        int[] A = new int[inputData.vertexAmount + 1];
+        Arrays.fill(A, MAX_VALUE);
+        A[startVertex] = 0;
 
         boolean hasNegativeCycle = false;
         for (int i = 1; i <= inputData.vertexAmount; i++) {
-            System.arraycopy(aCurr, 0, aPrev, 0, aCurr.length);
-
             boolean isChanged = false;
-            for (int v = 1; v <= inputData.vertexAmount; v++) {
-                int minWV = MAX_VALUE;
-                for (Edge edge : inputData.edges) {
-                    if (edge.to == v && aPrev[edge.from] != MAX_VALUE) {
-                        int val = aPrev[edge.from] + edge.weight;
-                        if (val < minWV) {
-                            minWV = val;
-                        }
+            for (Edge edge : inputData.edges) {
+                if (A[edge.from] < MAX_VALUE) {
+                    if (A[edge.to] > A[edge.from] + edge.weight) {
+                        A[edge.to] = A[edge.from] + edge.weight;
+                        isChanged = true;
                     }
                 }
-
-                aCurr[v] = Math.min(aPrev[v], minWV);
-                isChanged = isChanged || aCurr[v] < aPrev[v];
             }
-
             hasNegativeCycle = (i == inputData.vertexAmount && isChanged);
             if (!isChanged) break;
         }
 
-        return hasNegativeCycle ? null : minValue(aCurr, startVertex);
+        return hasNegativeCycle ? null : minValue(A, startVertex);
     }
 
     private static int minValue(int[] array, int excludeIndex) {
