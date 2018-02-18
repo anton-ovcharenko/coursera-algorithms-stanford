@@ -2,6 +2,7 @@ package oaa.stanfordAlgorithms;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class Utils {
@@ -31,5 +32,17 @@ public class Utils {
             e.printStackTrace();
         }
         return array;
+    }
+
+    public static <T> T[] concatArray(T[] a, T[] b) {
+        int aLen = a.length;
+        int bLen = b.length;
+
+        @SuppressWarnings("unchecked")
+        T[] c = (T[]) Array.newInstance(a.getClass().getComponentType(), aLen + bLen);
+        System.arraycopy(a, 0, c, 0, aLen);
+        System.arraycopy(b, 0, c, aLen, bLen);
+
+        return c;
     }
 }

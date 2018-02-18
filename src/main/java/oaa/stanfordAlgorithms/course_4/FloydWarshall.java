@@ -1,6 +1,6 @@
 package oaa.stanfordAlgorithms.course_4;
 
-import oaa.stanfordAlgorithms.course_4.BellmanFord.Edge;
+import oaa.stanfordAlgorithms.Edge;
 
 import static java.lang.Integer.MAX_VALUE;
 import static oaa.stanfordAlgorithms.course_4.BellmanFord.inputDataFromFile;

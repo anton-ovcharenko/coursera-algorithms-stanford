@@ -18,19 +18,19 @@ public class PrimMinimumSpanningTree_MxN {
 
         long T = 0;
         Set<Integer> X = new HashSet<>();
-        X.add(array[0].v1);
+        X.add(array[0].from);
 
         while (X.size() < nodeNumber) {
             Edge e = Arrays
                     .stream(array)
-                    .filter(edge -> (X.contains(edge.v1) && !X.contains(edge.v2))
-                            || (X.contains(edge.v2) && !X.contains(edge.v1)))
-                    .sorted(Comparator.comparingInt(edg -> edg.cost))
+                    .filter(edge -> (X.contains(edge.from) && !X.contains(edge.to))
+                            || (X.contains(edge.to) && !X.contains(edge.from)))
+                    .sorted(Comparator.comparingInt(edg -> edg.weight))
                     .findFirst()
                     .orElseGet(() -> null);
             Objects.nonNull(e);
-            T += e.cost;
-            X.add(X.contains(e.v2) ? e.v1 : e.v2);
+            T += e.weight;
+            X.add(X.contains(e.to) ? e.from : e.to);
         }
 
         System.out.println(T);

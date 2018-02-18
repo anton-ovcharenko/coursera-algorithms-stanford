@@ -21,20 +21,20 @@ public class MaxSpacingClusteringUF {
 
         UnionFind uf = new UnionFind(nodeNumber);
 
-        Heap<Edge> heap = new Heap<>(Edge.class, edgeList.size(), Comparator.comparingInt(e -> e.cost));
+        Heap<Edge> heap = new Heap<>(Edge.class, edgeList.size(), Comparator.comparingInt(e -> e.weight));
         edgeList.forEach(heap::addElement);
 
         while (uf.count() > clusterAmount) {
             Edge edge = heap.removeRoot();
-            if (!uf.isConnected(edge.v1, edge.v2)) {
-                uf.union(edge.v1, edge.v2);
+            if (!uf.isConnected(edge.from, edge.to)) {
+                uf.union(edge.from, edge.to);
             }
         }
 
         while (heap.getSize() > 0) {
             Edge edge = heap.removeRoot();
-            if (!uf.isConnected(edge.v1, edge.v2)) {
-                System.out.println(edge.cost);
+            if (!uf.isConnected(edge.from, edge.to)) {
+                System.out.println(edge.weight);
                 break;
             }
         }

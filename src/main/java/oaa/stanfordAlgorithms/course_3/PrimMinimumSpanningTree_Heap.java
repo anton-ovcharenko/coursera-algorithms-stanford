@@ -17,14 +17,14 @@ public class PrimMinimumSpanningTree_Heap {
 
         Map<Integer, List<Edge>> adjacencyMap = new HashMap<>();
         for (Edge edge : array) {
-            getAdjacencyList(adjacencyMap, edge.v1).add(edge);
-            getAdjacencyList(adjacencyMap, edge.v2).add(edge);
+            getAdjacencyList(adjacencyMap, edge.from).add(edge);
+            getAdjacencyList(adjacencyMap, edge.to).add(edge);
         }
 
-        Heap<Edge> heap = new Heap<>(Edge.class, array.length, Comparator.comparingInt(e -> e.cost));
+        Heap<Edge> heap = new Heap<>(Edge.class, array.length, Comparator.comparingInt(e -> e.weight));
         Set<Integer> X = new HashSet<>();
 
-        int startVertex = array[0].v1;
+        int startVertex = array[0].from;
         X.add(startVertex);
         adjacencyMap
                 .get(startVertex)
@@ -33,15 +33,15 @@ public class PrimMinimumSpanningTree_Heap {
         long T = 0;
         while (X.size() < nodeNumber) {
             Edge edge = heap.removeRoot();
-            if (!X.contains(edge.v1) || !X.contains(edge.v2)) {
-                int newVertex = X.contains(edge.v1) ? edge.v2 : edge.v1;
+            if (!X.contains(edge.from) || !X.contains(edge.to)) {
+                int newVertex = X.contains(edge.from) ? edge.to : edge.from;
                 X.add(newVertex);
-                T += edge.cost;
+                T += edge.weight;
 
                 adjacencyMap
                         .get(newVertex)
                         .stream()
-                        .filter(e -> !X.contains(e.v1) || !X.contains(e.v2))
+                        .filter(e -> !X.contains(e.from) || !X.contains(e.to))
                         .forEach(heap::addElement);
             }
         }

@@ -1,5 +1,7 @@
 package oaa.stanfordAlgorithms.course_4;
 
+import oaa.stanfordAlgorithms.Edge;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -86,27 +88,6 @@ public class BellmanFord {
             e.printStackTrace();
         }
         return null;
-    }
-
-    static class Edge {
-        int from;
-        int to;
-        int weight;
-
-        public Edge(int from, int to, int weight) {
-            this.from = from;
-            this.to = to;
-            this.weight = weight;
-        }
-
-        @Override
-        public String toString() {
-            return "Edge{" +
-                    "from=" + from +
-                    ", to=" + to +
-                    ", weight=" + weight +
-                    '}';
-        }
     }
 
     static class InputData {

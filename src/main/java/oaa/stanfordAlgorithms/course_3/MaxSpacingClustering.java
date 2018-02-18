@@ -26,14 +26,14 @@ public class MaxSpacingClustering {
                 .mapToObj(i -> new HashSet<>(Collections.singletonList(i)))
                 .collect(Collectors.toList());
 
-        Heap<Edge> heap = new Heap<>(Edge.class, edgeList.size(), Comparator.comparingInt(e -> e.cost));
+        Heap<Edge> heap = new Heap<>(Edge.class, edgeList.size(), Comparator.comparingInt(e -> e.weight));
         edgeList.forEach(heap::addElement);
 
         while (setList.size() > clusterAmount) {
             Edge edge = heap.removeRoot();
 
-            Set<Integer> setV1 = getContainerOf(setList, edge.v1);
-            Set<Integer> setV2 = getContainerOf(setList, edge.v2);
+            Set<Integer> setV1 = getContainerOf(setList, edge.from);
+            Set<Integer> setV2 = getContainerOf(setList, edge.to);
 
             if (!setV1.equals(setV2)) {
                 setV1.addAll(setV2);
@@ -44,11 +44,11 @@ public class MaxSpacingClustering {
         while (heap.getSize() > 0) {
             Edge edge = heap.removeRoot();
 
-            Set<Integer> setV1 = getContainerOf(setList, edge.v1);
-            Set<Integer> setV2 = getContainerOf(setList, edge.v2);
+            Set<Integer> setV1 = getContainerOf(setList, edge.from);
+            Set<Integer> setV2 = getContainerOf(setList, edge.to);
 
             if (!setV1.equals(setV2)) {
-                System.out.println(edge.cost);
+                System.out.println(edge.weight);
                 break;
             }
         }

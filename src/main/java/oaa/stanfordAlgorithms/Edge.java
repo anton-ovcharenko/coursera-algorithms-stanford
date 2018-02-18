@@ -1,13 +1,22 @@
 package oaa.stanfordAlgorithms;
 
 public class Edge {
-    public int v1;
-    public int v2;
-    public int cost;
+    public int from;
+    public int to;
+    public int weight;
 
-    public Edge(int v1, int v2, int cost) {
-        this.v1 = v1;
-        this.v2 = v2;
-        this.cost = cost;
+    public Edge(int from, int to, int weight) {
+        this.from = from;
+        this.to = to;
+        this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Edge{" +
+                "from=" + from +
+                ", to=" + to +
+                ", weight=" + weight +
+                '}';
     }
 }
