@@ -61,7 +61,7 @@ public class TSP_DP {
         for (int i = 0; i < inputData.amount; i++) {
             for (int j = 0; j < inputData.amount; j++) {
                 DISTANCES[i][j] = DISTANCES[j][i] =
-                        i == j ? INF : distance(inputData.edges[i], inputData.edges[j]);
+                        i == j ? INF : distance(inputData.cities[i], inputData.cities[j]);
             }
         }
         System.out.println("Distances:");
@@ -121,11 +121,11 @@ public class TSP_DP {
 
     static class InputData {
         int amount;
-        City[] edges;
+        City[] cities;
 
-        public InputData(int amount, City[] edges) {
+        public InputData(int amount, City[] cities) {
             this.amount = amount;
-            this.edges = edges;
+            this.cities = cities;
         }
     }
 }
